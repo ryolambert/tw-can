@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "config:base",
+        ":combinePatchMinorReleases",
+        "group:allNonMajor",
+        ":labels(dependencies,skip changelog)",
+        ":assignee(dcastil)",
+        ":enableVulnerabilityAlertsWithLabel(security)",
+        "schedule:monthly"
+    ],
+    "timezone": "Europe/Berlin",
+    "prHourlyLimit": 10,
+    "rangeStrategy": "bump"
+}
