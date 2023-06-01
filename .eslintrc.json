@@ -1,6 +1,6 @@
 {
-    "extends": ["plugin:@typescript-eslint/base", "plugin:import/typescript"],
-    "plugins": ["import"],
+    "extends": [ "plugin:@typescript-eslint/base", "plugin:import/typescript" ],
+    "plugins": [ "import" ],
     "ignorePatterns": [
         "coverage/**",
         "dist/**",
@@ -8,7 +8,9 @@
         "*.json",
         "*.lock",
         "*.md",
-        "*.svg"
+        "*.svg",
+        "*.webp",
+        "*.yaml"
     ],
     "rules": {
         "@typescript-eslint/consistent-type-assertions": "warn",
@@ -40,8 +42,8 @@
         ],
         "@typescript-eslint/no-useless-constructor": "warn",
         "array-callback-return": "warn",
-        "dot-location": ["warn", "property"],
-        "eqeqeq": ["warn", "smart"],
+        "dot-location": [ "warn", "property" ],
+        "eqeqeq": [ "warn", "smart" ],
         "getter-return": "warn",
         "import/first": "error",
         "import/no-default-export": "warn",
@@ -51,13 +53,13 @@
         "import/order": [
             "warn",
             {
-                "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+                "groups": [ "builtin", "external", "internal", "parent", "sibling", "index" ],
                 "newlines-between": "always"
             }
         ],
         "new-parens": "warn",
         "no-caller": "warn",
-        "no-cond-assign": ["warn", "except-parens"],
+        "no-cond-assign": [ "warn", "except-parens" ],
         "no-console": "warn",
         "no-const-assign": "warn",
         "no-control-regex": "warn",
@@ -92,10 +94,10 @@
             {
                 "allowSamePrecedence": false,
                 "groups": [
-                    ["&", "|", "^", "~", "<<", ">>", ">>>"],
-                    ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-                    ["&&", "||"],
-                    ["in", "instanceof"]
+                    [ "&", "|", "^", "~", "<<", ">>", ">>>" ],
+                    [ "==", "!=", "===", "!==", ">", ">=", "<", "<=" ],
+                    [ "&&", "||" ],
+                    [ "in", "instanceof" ]
                 ]
             }
         ],
@@ -123,7 +125,7 @@
                 "property": "import"
             }
         ],
-        "no-restricted-syntax": ["warn", "WithStatement"],
+        "no-restricted-syntax": [ "warn", "WithStatement" ],
         "no-script-url": "warn",
         "no-self-assign": "warn",
         "no-self-compare": "warn",
@@ -149,19 +151,19 @@
         "no-whitespace-before-property": "warn",
         "no-with": "warn",
         "require-yield": "warn",
-        "rest-spread-spacing": ["warn", "never"],
-        "strict": ["warn", "never"],
-        "unicode-bom": ["warn", "never"],
+        "rest-spread-spacing": [ "warn", "never" ],
+        "strict": [ "warn", "never" ],
+        "unicode-bom": [ "warn", "never" ],
         "use-isnan": "warn",
         "valid-typeof": "warn"
     },
     "overrides": [
         {
-            "files": ["tests/**/*.ts"],
-            "extends": ["plugin:jest/recommended", "plugin:jest/style"]
+            "files": [ "tests/**/*.ts" ],
+            "extends": [ "plugin:jest/recommended", "plugin:jest/style" ]
         },
         {
-            "files": ["scripts/**/*.?(m)js"],
+            "files": [ "scripts/**/*.?(m)js" ],
             "rules": {
                 "no-console": "off"
             }
