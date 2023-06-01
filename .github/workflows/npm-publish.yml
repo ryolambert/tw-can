@@ -10,23 +10,41 @@ jobs:
         permissions:
             id-token: write
         steps:
-            - uses: actions/checkout@v3
-            - uses: pnpm/action-setup@v2
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
               with:
-                  version: 7.9.2
-            - uses: actions/setup-node@v3
+                  node-version: 18
+
+            - name: Setup pnpm 8.6.0
+              uses: pnpm/action-setup@v2.2.4
               with:
-                  cache: 'pnpm'
+                  version: 8.6.0
+                  run_install: false
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            - uses: actions/cache@v3
+              name: Setup pnpm cache
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
+
             - name: Install dependencies
               run: pnpm install --prefer-offline --frozen-lockfile
-            - name: Build
-              run: pnpm run build
             - uses: actions/upload-artifact@v3
               with:
                   name: build-output
                   path: dist
                   if-no-files-found: error
-            - run: pnpm run size
             - uses: martinbeentjes/npm-get-version-action@v1.3.1
               id: package-version
             - run: pnpm run version --no-git-tag-version --new-version ${{ steps.package-version.outputs.current-version }}-dev.${{ github.sha }}
