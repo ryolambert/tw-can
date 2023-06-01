@@ -14,8 +14,8 @@ Utility function to efficiently merge [Tailwind CSS](https://tailwindcss.com) cl
 ```ts
 import { twCan } from 'tw-can'
 
-twCan('px-2 py-1 bg-red hover:bg-dark-red', 'p-3 bg-[#B91C1C]')
-// → 'hover:bg-dark-red p-3 bg-[#B91C1C]'
+twCan('px-2 py-1 bg-red hover:bg-dark-red', 'p-3 bg-[#B91C1C]', 'aspect-ratio border border-2', { '-mt-[4.3rem] z-50': 5 > 3 }, 'flex flex-col grid grid-5', {'grid bg-orange': false})
+// → 'hover:bg-dark-red p-3 bg-[#B91C1C] aspect-ratio border border-2 -mt-[4.3rem] z-50 flex flex-col grid grid-5'
 ```
 
 -   Supports Tailwind v3.0 up to v3.3
